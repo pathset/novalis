@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novalis Executor</title>
+    <link rel="icon" type="image/png" href="Novalis.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0f1624;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .navbar {
+            padding: 1.5rem 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 22, 36, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: 40px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #00c6ff;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding: 0 1rem;
+            background: linear-gradient(rgba(15, 22, 36, 0.9), rgba(15, 22, 36, 0.9)),
+                        url('data:image/svg+xml,<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><path fill="%2300C6FF" d="M39.9,-65.7C51.5,-59.6,60.8,-48.8,67.2,-36.4C73.6,-24,77,-10,75.8,3.5C74.6,17,68.8,30,60.4,41.1C52,52.2,41,61.4,28.3,66.7C15.6,72,-8.8,73.4,-22.4,67.4C-36,61.4,-38.8,48,-44.4,36.8C-50,25.6,-58.4,16.6,-62.4,5.1C-66.4,-6.4,-66,-20.4,-60.2,-31.6C-54.4,-42.8,-43.2,-51.2,-31.6,-57.3C-20,-63.4,-8.2,-67.2,3.2,-72.5C14.6,-77.8,28.3,-71.8,39.9,-65.7Z" transform="translate(100 100)" /></svg>');
+            background-size: cover;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            color: #a0a0a0;
+        }
+
+        .cta-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.2);
+        }
+
+        .features {
+            padding: 6rem 6%;
+            background: #141c2f;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: 0.3s;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-card h3 {
+            color: #00c6ff;
+            margin-bottom: 1rem;
+        }
+
+        .showcase {
+            padding: 6rem 6%;
+        }
+
+        .showcase h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .showcase-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .showcase-item {
+            background: #141c2f;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .showcase-item:hover {
+            transform: scale(1.05);
+        }
+
+        .showcase-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+
+        footer {
+            background: #141c2f;
+            padding: 2rem 6%;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: 0.3s;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-links a:hover {
+            color: #00c6ff;
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Novalis.png" alt="Novalis Logo">
+            Novalis
+        </div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#showcase">Showcase</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1 class="floating">Novalis Executor</h1>
+        <p>Keyless, Fast & Free Forever.</p>
+        <a href="https://discord.gg/SqcPxGGE6q" target="_blank">
+            <button class="cta-btn">Download</button>
+        </a>
+    </section>
+
+    <section class="features" id="features">
+        <h2>Features</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3>Stable & Fast</h3>
+                <p>Near instant injections and executions to satisfy your needs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3>Script Hub</h3>
+                <p>Run scripts right from the executable into your game.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Regular Updates</h3>
+                <p>Fast updates, listening to the community & anything you need.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="showcase" id="showcase">
+        <h2>Showcase</h2>
+        <div class="showcase-grid">
+            <div class="showcase-item">
+                <img class="showcase-img" src="unc.png" alt="UNC">
+                <div style="padding: 1rem;">
+                    <h3>81% UNC</h3>
+                    <p>Fast & Reliable</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img class="showcase-img" src="ui.png" alt="UI">
+                <div style="padding: 1rem;">
+                    <h3>UI</h3>
+                    <p>ts does NOT fit inside the box LMAO</p>
+                </div>
+            </div>
+            <div class="showcase-item">
+                <img class="showcase-img" src="sh.png" alt="scripthub">
+                <div style="padding: 1rem;">
+                    <h3>Script Hub</h3>
+                    <p>Adding more soon ;3</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://discord.gg/SqcPxGGE6q" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
+        <p>&copy; 2024 Novalis Executor. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.querySelector('.navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.style.background = 'rgba(15, 22, 36, 0.95)';
+                } else {
+                    navbar.style.background = 'rgba(15, 22, 36, 0.8)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

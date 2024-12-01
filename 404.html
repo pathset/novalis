@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found | Novalis</title>
+    <link rel="icon" type="image/png" href="Novalis.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: #0f1624;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .error-container {
+            max-width: 600px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .error-code {
+            font-size: 8rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .error-code::after {
+            content: '404';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0.5;
+            filter: blur(20px);
+            z-index: -1;
+        }
+
+        .error-message {
+            font-size: 1.5rem;
+            color: #a0a0a0;
+            margin-bottom: 2rem;
+        }
+
+        .home-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(45deg, #00c6ff, #0072ff);
+            border: none;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+        }
+
+        .home-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 198, 255, 0.2);
+        }
+
+        .glitch-effect {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-effect::before,
+        .glitch-effect::after {
+            content: '404';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            background: #0f1624;
+            overflow: hidden;
+            animation: glitch 2s infinite;
+        }
+
+        .glitch-effect::before {
+            left: 2px;
+            text-shadow: -2px 0 #00c6ff;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch 3s infinite linear alternate-reverse;
+        }
+
+        .glitch-effect::after {
+            left: -2px;
+            text-shadow: -2px 0 #0072ff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch 2s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch {
+            0% {
+                clip: rect(11px, 9999px, 82px, 0);
+            }
+            5% {
+                clip: rect(59px, 9999px, 53px, 0);
+            }
+            10% {
+                clip: rect(73px, 9999px, 25px, 0);
+            }
+            15% {
+                clip: rect(33px, 9999px, 95px, 0);
+            }
+            20% {
+                clip: rect(18px, 9999px, 76px, 0);
+            }
+            25% {
+                clip: rect(47px, 9999px, 32px, 0);
+            }
+            30% {
+                clip: rect(89px, 9999px, 14px, 0);
+            }
+            35% {
+                clip: rect(66px, 9999px, 91px, 0);
+            }
+            40% {
+                clip: rect(27px, 9999px, 85px, 0);
+            }
+            45% {
+                clip: rect(42px, 9999px, 67px, 0);
+            }
+            50% {
+                clip: rect(54px, 9999px, 43px, 0);
+            }
+            55% {
+                clip: rect(71px, 9999px, 22px, 0);
+            }
+            60% {
+                clip: rect(36px, 9999px, 98px, 0);
+            }
+            65% {
+                clip: rect(82px, 9999px, 31px, 0);
+            }
+            70% {
+                clip: rect(15px, 9999px, 75px, 0);
+            }
+            75% {
+                clip: rect(64px, 9999px, 45px, 0);
+            }
+            80% {
+                clip: rect(23px, 9999px, 87px, 0);
+            }
+            85% {
+                clip: rect(91px, 9999px, 16px, 0);
+            }
+            90% {
+                clip: rect(38px, 9999px, 92px, 0);
+            }
+            95% {
+                clip: rect(52px, 9999px, 34px, 0);
+            }
+            100% {
+                clip: rect(79px, 9999px, 68px, 0);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .decoration {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .decoration::before {
+            content: '';
+            position: absolute;
+            width: 200vw;
+            height: 200vh;
+            top: -100vh;
+            left: -100vw;
+            background: radial-gradient(circle at center, rgba(0, 198, 255, 0.1) 0%, transparent 40%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(1); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="decoration"></div>
+    <div class="error-container">
+        <div class="error-code glitch-effect">404</div>
+        <div class="error-message">Oops! this page dont exist</div>
+        <a href="index.html" class="home-btn">Return Home</a>
+    </div>
+</body>
+</html>
